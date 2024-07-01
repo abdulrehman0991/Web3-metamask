@@ -3,7 +3,7 @@ import './App.css';
 import Web3 from "web3";
 
 function App() {
-  const [isConnected, setIsConnected] = useState(false);
+  const [isConnected, setIsConnected] = useState(null);
   const [walletAddress, setWalletAddress] = useState("");
   const [walletBalance, setWalletBalance] = useState("");
 
@@ -12,10 +12,10 @@ function App() {
       const web3 = new Web3(window.ethereum);
       try {
         await window.ethereum.request({ method: "eth_requestAccounts" });
-        setIsConnected(true);
         const accounts = await web3.eth.getAccounts();
-        setWalletAddress(accounts[0]);
         const balance = await web3.eth.getBalance(accounts[0]);
+        setIsConnected(web3);
+        setWalletAddress(accounts[0]);
         setWalletBalance(web3.utils.fromWei(balance, "ether"));
         console.log("MetaMask connected");
       } catch (error) {
