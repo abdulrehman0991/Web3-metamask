@@ -33,7 +33,7 @@ function App() {
           {isConnected ? "MetaMask Connected" : "Connect to the metamask"}
         </button>
         <p>{walletAddress && `Wallet Address: ${walletAddress}`}</p>
-        <p>{walletBalance && `Wallet Balance: ${walletBalance} ETH`}</p>
+        <p>{walletBalance && `Wallet Balance: ${walletBalance}`}</p>
       </header>
     </div>
   );
